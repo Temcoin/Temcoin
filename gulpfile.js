@@ -10,6 +10,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 'use strict';
 
 // Include Gulp & tools we'll use
+
+var FilesToCopy = [
+  './dist/**/*.*',
+  './dist/*.*'
+];
+
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
@@ -97,6 +103,10 @@ var optimizeHtmlTask = function(src, dest) {
     }));
 };
 
+gulp.task('copydist', function() {
+  gulp.src(FilesToCopy)
+    .pipe(gulp.dest('../temcoin.github.io/'));
+});
 // Compile and automatically prefix stylesheets
 gulp.task('styles', function() {
   return styleTask('styles', ['**/*.css']);
